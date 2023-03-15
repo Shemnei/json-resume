@@ -1,0 +1,12 @@
+# Options: <https://rust-lang.github.io/rustfmt/?version=v1.4.36&search=>
+
+#UNSTABLE:
+#format_strings = true
+#imports_granularity = "Module"
+#reorder_impl_items = true
+#group_imports = "StdExternalCrate"
+
+hard_tabs = true
+newline_style = "Unix"
+max_width = 79
+use_small_heuristics = "Max"
