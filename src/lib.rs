@@ -29,13 +29,13 @@
 )]
 #![cfg_attr(docsrs, feature(doc_cfg), feature(doc_alias))]
 
-use std::io::BufRead;
-
 use serde::{Deserialize, Serialize};
+#[cfg(feature = "validate")]
 use serde_valid::Validate;
 
 /// Resume Schema
-#[derive(Default, Debug, Clone, Serialize, Deserialize, Validate)]
+#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Resume {
 	pub basics: Option<Basics>,
@@ -61,7 +61,8 @@ pub struct Resume {
 	pub meta: Option<Meta>,
 }
 
-#[derive(Default, Debug, Clone, Serialize, Deserialize, Validate)]
+#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Basics {
 	pub name: Option<String>,
@@ -82,7 +83,8 @@ pub struct Basics {
 	pub profiles: Vec<Profile>,
 }
 
-#[derive(Default, Debug, Clone, Serialize, Deserialize, Validate)]
+#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Location {
 	/// To add multiple address lines, use \n. For example, 1234 Glücklichkeit Straße\nHinterhaus 5. Etage li.
@@ -98,7 +100,8 @@ pub struct Location {
 }
 
 /// Specify any number of social networks that you participate in
-#[derive(Default, Debug, Clone, Serialize, Deserialize, Validate)]
+#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Profile {
 	/// e.g. Facebook or Twitter
@@ -109,7 +112,8 @@ pub struct Profile {
 	pub url: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, Serialize, Deserialize, Validate)]
+#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Work {
 	/// e.g. Facebook
@@ -123,13 +127,19 @@ pub struct Work {
 	/// e.g. http://facebook.example.com
 	pub url: Option<String>,
 	#[serde(rename = "startDate")]
-	#[validate(
-		pattern = r"^([1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]|[1-2][0-9]{3}-[0-1][0-9]|[1-2][0-9]{3})$"
+	#[cfg_attr(
+		feature = "validate",
+		validate(
+			pattern = r"^([1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]|[1-2][0-9]{3}-[0-1][0-9]|[1-2][0-9]{3})$"
+		)
 	)]
 	pub start_date: Option<String>,
 	#[serde(rename = "endDate")]
-	#[validate(
-		pattern = r"^([1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]|[1-2][0-9]{3}-[0-1][0-9]|[1-2][0-9]{3})$"
+	#[cfg_attr(
+		feature = "validate",
+		validate(
+			pattern = r"^([1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]|[1-2][0-9]{3}-[0-1][0-9]|[1-2][0-9]{3})$"
+		)
 	)]
 	pub end_date: Option<String>,
 	/// Specify multiple accomplishments
@@ -137,10 +147,12 @@ pub struct Work {
 }
 
 /// e.g. Increased profits by 20% from 2011-2012 through viral advertising
-#[derive(Debug, Clone, Serialize, Deserialize, Validate)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[cfg_attr(feature = "validate", derive(Validate))]
 pub struct Highlight(String);
 
-#[derive(Default, Debug, Clone, Serialize, Deserialize, Validate)]
+#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Volunteer {
 	/// e.g. Facebook
@@ -150,13 +162,19 @@ pub struct Volunteer {
 	/// e.g. http://facebook.example.com
 	pub url: Option<String>,
 	#[serde(rename = "startDate")]
-	#[validate(
-		pattern = r"^([1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]|[1-2][0-9]{3}-[0-1][0-9]|[1-2][0-9]{3})$"
+	#[cfg_attr(
+		feature = "validate",
+		validate(
+			pattern = r"^([1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]|[1-2][0-9]{3}-[0-1][0-9]|[1-2][0-9]{3})$"
+		)
 	)]
 	pub start_date: Option<String>,
 	#[serde(rename = "endDate")]
-	#[validate(
-		pattern = r"^([1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]|[1-2][0-9]{3}-[0-1][0-9]|[1-2][0-9]{3})$"
+	#[cfg_attr(
+		feature = "validate",
+		validate(
+			pattern = r"^([1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]|[1-2][0-9]{3}-[0-1][0-9]|[1-2][0-9]{3})$"
+		)
 	)]
 	pub end_date: Option<String>,
 	/// Give an overview of your responsibilities at the company
@@ -165,7 +183,8 @@ pub struct Volunteer {
 	pub highlights: Vec<Highlight>,
 }
 
-#[derive(Default, Debug, Clone, Serialize, Deserialize, Validate)]
+#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Education {
 	/// e.g. Massachusetts Institute of Technology
@@ -177,13 +196,19 @@ pub struct Education {
 	/// e.g. Bachelor
 	pub study_type: Option<String>,
 	#[serde(rename = "startDate")]
-	#[validate(
-		pattern = r"^([1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]|[1-2][0-9]{3}-[0-1][0-9]|[1-2][0-9]{3})$"
+	#[cfg_attr(
+		feature = "validate",
+		validate(
+			pattern = r"^([1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]|[1-2][0-9]{3}-[0-1][0-9]|[1-2][0-9]{3})$"
+		)
 	)]
 	pub start_date: Option<String>,
 	#[serde(rename = "endDate")]
-	#[validate(
-		pattern = r"^([1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]|[1-2][0-9]{3}-[0-1][0-9]|[1-2][0-9]{3})$"
+	#[cfg_attr(
+		feature = "validate",
+		validate(
+			pattern = r"^([1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]|[1-2][0-9]{3}-[0-1][0-9]|[1-2][0-9]{3})$"
+		)
 	)]
 	pub end_date: Option<String>,
 	/// grade point average, e.g. 3.67/4.0
@@ -194,17 +219,22 @@ pub struct Education {
 }
 
 /// e.g. H1302 - Introduction to American history
-#[derive(Debug, Clone, Serialize, Deserialize, Validate)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[cfg_attr(feature = "validate", derive(Validate))]
 pub struct Course(String);
 
 /// Specify any awards you have received throughout your professional caree
-#[derive(Default, Debug, Clone, Serialize, Deserialize, Validate)]
+#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Award {
 	/// e.g. One of the 100 greatest minds of the century
 	pub title: Option<String>,
-	#[validate(
-		pattern = r"^([1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]|[1-2][0-9]{3}-[0-1][0-9]|[1-2][0-9]{3})$"
+	#[cfg_attr(
+		feature = "validate",
+		validate(
+			pattern = r"^([1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]|[1-2][0-9]{3}-[0-1][0-9]|[1-2][0-9]{3})$"
+		)
 	)]
 	pub date: Option<String>,
 	/// e.g. Time Magazine
@@ -214,7 +244,8 @@ pub struct Award {
 }
 
 /// Specify any certificates you have received throughout your professional career
-#[derive(Default, Debug, Clone, Serialize, Deserialize, Validate)]
+#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Certificate {
 	/// e.g. Certified Kubernetes Administrator
@@ -228,7 +259,8 @@ pub struct Certificate {
 }
 
 /// Specify your publications through your career
-#[derive(Default, Debug, Clone, Serialize, Deserialize, Validate)]
+#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Publication {
 	/// e.g. The World Wide Web
@@ -236,8 +268,11 @@ pub struct Publication {
 	/// e.g. IEEE, Computer Magazine
 	pub publisher: Option<String>,
 	#[serde(rename = "releaseDate")]
-	#[validate(
-		pattern = r"^([1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]|[1-2][0-9]{3}-[0-1][0-9]|[1-2][0-9]{3})$"
+	#[cfg_attr(
+		feature = "validate",
+		validate(
+			pattern = r"^([1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]|[1-2][0-9]{3}-[0-1][0-9]|[1-2][0-9]{3})$"
+		)
 	)]
 	pub release_date: Option<String>,
 	/// e.g. http://www.computer.org.example.com/csdl/mags/co/1996/10/rx069-abs.html
@@ -247,7 +282,8 @@ pub struct Publication {
 }
 
 /// List out your professional skill-set
-#[derive(Default, Debug, Clone, Serialize, Deserialize, Validate)]
+#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Skill {
 	/// e.g. Web Development
@@ -259,11 +295,13 @@ pub struct Skill {
 }
 
 /// e.g. HTML
-#[derive(Debug, Clone, Serialize, Deserialize, Validate)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[cfg_attr(feature = "validate", derive(Validate))]
 pub struct Keyword(String);
 
 /// List any other languages you speak
-#[derive(Default, Debug, Clone, Serialize, Deserialize, Validate)]
+#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Language {
 	/// e.g. English, Spanish
@@ -272,7 +310,8 @@ pub struct Language {
 	pub fluency: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, Serialize, Deserialize, Validate)]
+#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Interest {
 	/// e.g. Philosophy
@@ -281,7 +320,8 @@ pub struct Interest {
 }
 
 /// List references you have received
-#[derive(Default, Debug, Clone, Serialize, Deserialize, Validate)]
+#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Reference {
 	/// e.g. Timothy Cook
@@ -291,7 +331,8 @@ pub struct Reference {
 }
 
 /// Specify career projects
-#[derive(Default, Debug, Clone, Serialize, Deserialize, Validate)]
+#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Project {
 	/// e.g. The World Wide Web
@@ -303,13 +344,19 @@ pub struct Project {
 	/// Specify special elements involved
 	pub keywords: Vec<Keyword>,
 	#[serde(rename = "startDate")]
-	#[validate(
-		pattern = r"^([1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]|[1-2][0-9]{3}-[0-1][0-9]|[1-2][0-9]{3})$"
+	#[cfg_attr(
+		feature = "validate",
+		validate(
+			pattern = r"^([1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]|[1-2][0-9]{3}-[0-1][0-9]|[1-2][0-9]{3})$"
+		)
 	)]
 	pub start_date: Option<String>,
 	#[serde(rename = "endDate")]
-	#[validate(
-		pattern = r"^([1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]|[1-2][0-9]{3}-[0-1][0-9]|[1-2][0-9]{3})$"
+	#[cfg_attr(
+		feature = "validate",
+		validate(
+			pattern = r"^([1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]|[1-2][0-9]{3}-[0-1][0-9]|[1-2][0-9]{3})$"
+		)
 	)]
 	pub end_date: Option<String>,
 	/// e.g. http://www.computer.org/csdl/mags/co/1996/10/rx069-abs.html
@@ -323,11 +370,13 @@ pub struct Project {
 }
 
 /// e.g. Team Lead, Speaker, Writer
-#[derive(Debug, Clone, Serialize, Deserialize, Validate)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[cfg_attr(feature = "validate", derive(Validate))]
 pub struct Role(String);
 
 /// The schema version and any other tooling configuration lives here
-#[derive(Default, Debug, Clone, Serialize, Deserialize, Validate)]
+#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Meta {
 	/// URL (as per RFC 3986) to latest version of this document
@@ -339,26 +388,32 @@ pub struct Meta {
 	pub last_modified: Option<String>,
 }
 
-#[test]
-fn sample() -> Result<(), Box<dyn std::error::Error>> {
-	const SAMPLE: &str = include_str!("../sample.resume.json");
+#[cfg(feature = "validate")]
+#[cfg(test)]
+mod validate {
+	use super::*;
 
-	let resume: Resume = serde_json::from_str(SAMPLE)?;
-	resume.validate()?;
+	#[test]
+	fn sample() -> Result<(), Box<dyn std::error::Error>> {
+		const SAMPLE: &str = include_str!("../sample.resume.json");
 
-	Ok(())
-}
+		let resume: Resume = serde_json::from_str(SAMPLE)?;
+		resume.validate()?;
 
-#[test]
-#[ignore = "Run explicitly"]
-fn stdin() -> Result<(), Box<dyn std::error::Error>> {
-	let resume_file = std::env::var_os("RESUME_FILE").unwrap();
-	let resume = std::fs::read_to_string(resume_file)?;
+		Ok(())
+	}
 
-	let resume: Resume = serde_json::from_str(&resume)?;
-	resume.validate()?;
+	#[test]
+	#[ignore = "Run explicitly"]
+	fn stdin() -> Result<(), Box<dyn std::error::Error>> {
+		let resume_file = std::env::var_os("RESUME_FILE").unwrap();
+		let resume = std::fs::read_to_string(resume_file)?;
 
-	println!("{resume:#?}");
+		let resume: Resume = serde_json::from_str(&resume)?;
+		resume.validate()?;
 
-	Ok(())
+		println!("{resume:#?}");
+
+		Ok(())
+	}
 }
