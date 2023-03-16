@@ -2,6 +2,12 @@
 name = "json-resume"
 version = "0.1.0"
 edition = "2021"
+authors = ["Shemnei"]
+license = "UNLICENSE"
+keywords = ["cv", "resume", "jsonresume"]
+exclude = ["justfile", "sample.resume.json"]
+description = "A library to interact with the jsonresume schema"
+homepage = "https://github.com/Shemnei/json-resume"
 
 [features]
 validate = ["serde_valid"]
