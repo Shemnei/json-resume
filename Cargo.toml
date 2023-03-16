@@ -10,6 +10,7 @@ description = "A library to interact with the jsonresume schema"
 homepage = "https://github.com/Shemnei/json-resume"
 
 [features]
+default = ["validate"]
 validate = ["serde_valid"]
 
 [dependencies]
