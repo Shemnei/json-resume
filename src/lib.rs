@@ -29,6 +29,8 @@
 )]
 #![cfg_attr(docsrs, feature(doc_cfg), feature(doc_alias))]
 
+use std::io::BufRead;
+
 use serde::{Deserialize, Serialize};
 use serde_valid::Validate;
 
@@ -343,6 +345,20 @@ fn sample() -> Result<(), Box<dyn std::error::Error>> {
 
 	let resume: Resume = serde_json::from_str(SAMPLE)?;
 	resume.validate()?;
+
+	Ok(())
+}
+
+#[test]
+#[ignore = "Run explicitly"]
+fn stdin() -> Result<(), Box<dyn std::error::Error>> {
+	let resume_file = std::env::var_os("RESUME_FILE").unwrap();
+	let resume = std::fs::read_to_string(resume_file)?;
+
+	let resume: Resume = serde_json::from_str(&resume)?;
+	resume.validate()?;
+
+	println!("{resume:#?}");
 
 	Ok(())
 }
