@@ -58,6 +58,9 @@ pub struct Resume {
 	pub references: Vec<Reference>,
 	/// Specify career projects
 	pub projects: Vec<Project>,
+	/// Specify side projects
+	#[cfg(feature = "side-projects")]
+	pub side_projects: Vec<Project>,
 	/// The schema version and any other tooling configuration lives here
 	pub meta: Option<Meta>,
 }

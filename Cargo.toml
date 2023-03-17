@@ -12,6 +12,7 @@ homepage = "https://github.com/Shemnei/json-resume"
 [features]
 default = ["validate"]
 validate = ["serde_valid"]
+side-projects = []
 
 [dependencies]
 regex = "1.7.1"
