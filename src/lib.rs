@@ -410,7 +410,7 @@ mod validate {
 
 	#[test]
 	#[ignore = "Run explicitly"]
-	fn stdin() -> Result<(), Box<dyn std::error::Error>> {
+	fn env() -> Result<(), Box<dyn std::error::Error>> {
 		let resume_file = std::env::var_os("RESUME_FILE").unwrap();
 		let resume = std::fs::read_to_string(resume_file)?;
 
