@@ -60,6 +60,7 @@ pub struct Resume {
 	pub projects: Vec<Project>,
 	/// Specify side projects
 	#[cfg(feature = "side-projects")]
+	#[serde(rename = "sideProjects")]
 	pub side_projects: Vec<Project>,
 	/// The schema version and any other tooling configuration lives here
 	pub meta: Option<Meta>,
