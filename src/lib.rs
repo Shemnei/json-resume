@@ -193,8 +193,9 @@ pub struct Education {
 	/// e.g. http://facebook.example.com
 	pub url: Option<String>,
 	/// e.g. Arts
-	pub arae: Option<String>,
+	pub area: Option<String>,
 	/// e.g. Bachelor
+	#[serde(rename = "studyType")]
 	pub study_type: Option<String>,
 	#[serde(rename = "startDate")]
 	#[cfg_attr(
