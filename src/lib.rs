@@ -33,6 +33,7 @@
 use serde::{Deserialize, Serialize};
 #[cfg(feature = "validate")]
 use serde_valid::Validate;
+use std::fmt;
 
 /// Resume Schema
 #[derive(Default, Debug, Clone, Serialize, Deserialize)]
@@ -154,7 +155,13 @@ pub struct Work {
 /// e.g. Increased profits by 20% from 2011-2012 through viral advertising
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[cfg_attr(feature = "validate", derive(Validate))]
-pub struct Highlight(String);
+pub struct Highlight(pub String);
+
+impl fmt::Display for Highlight {
+	fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+		write!(f, "{}", self.0)
+	}
+}
 
 #[derive(Default, Debug, Clone, Serialize, Deserialize)]
 #[cfg_attr(feature = "validate", derive(Validate))]
@@ -227,7 +234,13 @@ pub struct Education {
 /// e.g. H1302 - Introduction to American history
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[cfg_attr(feature = "validate", derive(Validate))]
-pub struct Course(String);
+pub struct Course(pub String);
+
+impl fmt::Display for Course {
+	fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+		write!(f, "{}", self.0)
+	}
+}
 
 /// Specify any awards you have received throughout your professional caree
 #[derive(Default, Debug, Clone, Serialize, Deserialize)]
@@ -303,7 +316,13 @@ pub struct Skill {
 /// e.g. HTML
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[cfg_attr(feature = "validate", derive(Validate))]
-pub struct Keyword(String);
+pub struct Keyword(pub String);
+
+impl fmt::Display for Keyword {
+	fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+		write!(f, "{}", self.0)
+	}
+}
 
 /// List any other languages you speak
 #[derive(Default, Debug, Clone, Serialize, Deserialize)]
@@ -378,7 +397,13 @@ pub struct Project {
 /// e.g. Team Lead, Speaker, Writer
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[cfg_attr(feature = "validate", derive(Validate))]
-pub struct Role(String);
+pub struct Role(pub String);
+
+impl fmt::Display for Role {
+	fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+		write!(f, "{}", self.0)
+	}
+}
 
 /// The schema version and any other tooling configuration lives here
 #[derive(Default, Debug, Clone, Serialize, Deserialize)]
