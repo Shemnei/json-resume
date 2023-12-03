@@ -34,7 +34,7 @@ use serde_valid::Validate;
 use std::fmt;
 
 /// Resume Schema
-#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Resume {
@@ -65,7 +65,7 @@ pub struct Resume {
 	pub meta: Option<Meta>,
 }
 
-#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Basics {
@@ -87,7 +87,7 @@ pub struct Basics {
 	pub profiles: Vec<Profile>,
 }
 
-#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Location {
@@ -104,7 +104,7 @@ pub struct Location {
 }
 
 /// Specify any number of social networks that you participate in
-#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Profile {
@@ -116,7 +116,7 @@ pub struct Profile {
 	pub url: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Work {
@@ -151,7 +151,7 @@ pub struct Work {
 }
 
 /// e.g. Increased profits by 20% from 2011-2012 through viral advertising
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(feature = "validate", derive(Validate))]
 pub struct Highlight(pub String);
 
@@ -161,7 +161,7 @@ impl fmt::Display for Highlight {
 	}
 }
 
-#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Volunteer {
@@ -193,7 +193,7 @@ pub struct Volunteer {
 	pub highlights: Vec<Highlight>,
 }
 
-#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Education {
@@ -230,7 +230,7 @@ pub struct Education {
 }
 
 /// e.g. H1302 - Introduction to American history
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(feature = "validate", derive(Validate))]
 pub struct Course(pub String);
 
@@ -241,7 +241,7 @@ impl fmt::Display for Course {
 }
 
 /// Specify any awards you have received throughout your professional caree
-#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Award {
@@ -261,7 +261,7 @@ pub struct Award {
 }
 
 /// Specify any certificates you have received throughout your professional career
-#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Certificate {
@@ -276,7 +276,7 @@ pub struct Certificate {
 }
 
 /// Specify your publications through your career
-#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Publication {
@@ -299,7 +299,7 @@ pub struct Publication {
 }
 
 /// List out your professional skill-set
-#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Skill {
@@ -312,7 +312,7 @@ pub struct Skill {
 }
 
 /// e.g. HTML
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(feature = "validate", derive(Validate))]
 pub struct Keyword(pub String);
 
@@ -323,7 +323,7 @@ impl fmt::Display for Keyword {
 }
 
 /// List any other languages you speak
-#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Language {
@@ -333,7 +333,7 @@ pub struct Language {
 	pub fluency: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Interest {
@@ -343,7 +343,7 @@ pub struct Interest {
 }
 
 /// List references you have received
-#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Reference {
@@ -354,7 +354,7 @@ pub struct Reference {
 }
 
 /// Specify career projects
-#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Project {
@@ -393,7 +393,7 @@ pub struct Project {
 }
 
 /// e.g. Team Lead, Speaker, Writer
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(feature = "validate", derive(Validate))]
 pub struct Role(pub String);
 
@@ -404,7 +404,7 @@ impl fmt::Display for Role {
 }
 
 /// The schema version and any other tooling configuration lives here
-#[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[cfg_attr(feature = "validate", derive(Validate))]
 #[serde(default)]
 pub struct Meta {
