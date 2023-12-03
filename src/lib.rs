@@ -5,7 +5,6 @@
 	// TODO: rustdoc::missing_crate_level_docs,
 	// TODO: missing_docs,
 	// TODO: clippy::missing_docs_in_private_items,
-    //
 
     // Other
 	deprecated_in_future,
@@ -13,7 +12,6 @@
 	future_incompatible,
 	missing_copy_implementations,
 	missing_debug_implementations,
-	private_in_public,
 	rust_2018_compatibility,
 	rust_2018_idioms,
 	trivial_casts,
