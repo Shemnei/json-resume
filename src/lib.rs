@@ -201,6 +201,8 @@ pub struct Education {
 	pub institution: Option<String>,
 	/// e.g. http://facebook.example.com
 	pub url: Option<String>,
+	/// List of degrees or certificates awarded by this institution.
+	pub degrees: Vec<String>,
 	/// e.g. Arts
 	pub area: Option<String>,
 	/// e.g. Bachelor
