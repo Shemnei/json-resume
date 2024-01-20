@@ -6,7 +6,7 @@ on:
         required: true
         type: string
 
-name: Publish library
+name: Publish
 
 jobs:
   publish-cratesio:
@@ -19,10 +19,9 @@ jobs:
         with:
           ref: ${{ github.event.inputs.tag-name }}
 
-      - name: Install Rust
-        uses: actions-rs/toolchain@v1
+      - name: Install toolchain
+        uses: dtolnay/rust-toolchain@master
         with:
-          profile: minimal
           toolchain: stable
 
       - name: Upload library to crates.io

@@ -42,3 +42,10 @@ alias cic := all
 # REQUIRES: cargo-edit
 outdated:
 	cargo upgrade --dry-run
+
+# Check spelling
+#
+# REQUIRES: typos-cli
+alias spellcheck := typos
+typos:
+	typos --format=brief --config="{{justfile_directory()}}/.typos.toml"

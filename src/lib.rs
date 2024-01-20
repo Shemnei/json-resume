@@ -126,7 +126,7 @@ pub struct Work {
 	pub location: Option<String>,
 	/// e.g. Social Media Company
 	pub description: Option<String>,
-	/// Specify mutliple positions each with a data range.
+	/// Specify multiple positions each with a data range.
 	pub positions: Vec<Position>,
 	/// e.g. Software Engineer
 	pub position: Option<String>,
