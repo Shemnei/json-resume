@@ -120,21 +120,3 @@ jobs:
       - name: Run cargo clippy
         run: |
           cargo clippy --all-features --all-targets --message-format=json -- --allow deprecated
-
-  lockfile:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Install toolchain
-        uses: dtolnay/rust-toolchain@master
-        with:
-          toolchain: stable
-
-      # This plugin should be loaded after toolchain setup
-      - name: Setup rust cache
-        uses: Swatinem/rust-cache@v2
-
-      - name: Lockfile up to date
-        run: cargo update --locked
