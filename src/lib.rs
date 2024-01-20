@@ -126,6 +126,8 @@ pub struct Work {
 	pub location: Option<String>,
 	/// e.g. Social Media Company
 	pub description: Option<String>,
+	/// Specify mutliple positions each with a data range.
+	pub positions: Vec<Position>,
 	/// e.g. Software Engineer
 	pub position: Option<String>,
 	/// e.g. http://facebook.example.com
@@ -148,6 +150,30 @@ pub struct Work {
 	pub end_date: Option<String>,
 	/// Specify multiple accomplishments
 	pub highlights: Vec<Highlight>,
+}
+
+#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "validate", derive(Validate))]
+#[serde(default)]
+pub struct Position {
+	/// e.g. Cat Herder
+	pub title: String,
+	#[serde(rename = "startDate")]
+	#[cfg_attr(
+		feature = "validate",
+		validate(
+			pattern = r"^([1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]|[1-2][0-9]{3}-[0-1][0-9]|[1-2][0-9]{3})$"
+		)
+	)]
+	pub start_date: Option<String>,
+	#[serde(rename = "endDate")]
+	#[cfg_attr(
+		feature = "validate",
+		validate(
+			pattern = r"^([1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]|[1-2][0-9]{3}-[0-1][0-9]|[1-2][0-9]{3})$"
+		)
+	)]
+	pub end_date: Option<String>,
 }
 
 /// e.g. Increased profits by 20% from 2011-2012 through viral advertising
