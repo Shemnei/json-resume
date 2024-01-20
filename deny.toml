@@ -42,6 +42,7 @@ allow = [
   "CC0-1.0",
   "ISC",
   "MPL-2.0",
+  "Unlicense"
 ]
 # List of explicitly disallowed licenses
 # See https://spdx.org/licenses/ for list of possible licenses
